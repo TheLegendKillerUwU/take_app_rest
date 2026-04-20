@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
+import 'login_screen.dart';
 import 'register_screen.dart';
-import 'login_screen.dart'; // Uncomment when login screen is ready
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -28,7 +28,6 @@ class _WelcomeScreenState extends State<WelcomeScreen>
       begin: const Offset(0, 0.15),
       end: Offset.zero,
     ).animate(CurvedAnimation(parent: _animController, curve: Curves.easeOut));
-
     _animController.forward();
   }
 
@@ -53,8 +52,6 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Spacer(flex: 3),
-
-                  // Hotel icon
                   Container(
                     width: 80,
                     height: 80,
@@ -70,16 +67,10 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                       ],
                     ),
                     child: const Center(
-                      child: Text(
-                        '🏨',
-                        style: TextStyle(fontSize: 40),
-                      ),
+                      child: Text('🏨', style: TextStyle(fontSize: 40)),
                     ),
                   ),
-
                   const SizedBox(height: 28),
-
-                  // App title
                   const Text(
                     'HotelApp',
                     style: TextStyle(
@@ -89,10 +80,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                       letterSpacing: 0.5,
                     ),
                   ),
-
                   const SizedBox(height: 8),
-
-                  // Subtitle
                   const Text(
                     'TU ESTADIA IDEAL, SIEMPRE',
                     style: TextStyle(
@@ -102,33 +90,24 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-
                   const Spacer(flex: 3),
-
-                  // Crear cuenta button
+                  // ✅ CORREGIDO: Crear cuenta → RegisterScreen
                   _GoldenButton(
                     label: 'Crear cuenta',
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => const LoginScreen(),
-                        ),
-                      );
-                    },
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const RegisterScreen()),
+                    ),
                   ),
-
                   const SizedBox(height: 16),
-
-                  // Iniciar sesión button (outlined style)
+                  // ✅ CORREGIDO: Iniciar Sesión → LoginScreen
                   _GoldenButton(
                     label: 'Iniciar Sesión',
-                    onPressed: () {
-                      // TODO: Navigate to login screen
-                      // Navigator.push(context, MaterialPageRoute(builder: (_) => const LoginScreen()));
-                    },
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const LoginScreen()),
+                    ),
                   ),
-
                   const Spacer(flex: 1),
                 ],
               ),

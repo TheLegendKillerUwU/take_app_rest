@@ -4,9 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   // ⚠️ Cambia esta IP por la de tu computadora en la red local
-  // Ejemplo: 'http://192.168.1.100:8080'
-  // Para encontrar tu IP en Windows: abre CMD y escribe "ipconfig"
-  // busca "Dirección IPv4" en tu adaptador de red activo
   static const String _baseUrl = 'http://192.168.8.73:8080';
 
   static const String _tokenKey = 'auth_token';
@@ -89,7 +86,7 @@ class AuthService {
     await prefs.remove(_correoKey);
   }
 
-  // ── Verificar sesión activa ───────────────────────────────────
+  // ── Getters de sesión ─────────────────────────────────────────
 
   Future<bool> isLoggedIn() async {
     final prefs = await SharedPreferences.getInstance();
@@ -104,6 +101,12 @@ class AuthService {
   Future<String?> getNombre() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString(_nombreKey);
+  }
+
+  // ✅ NUEVO: getter para el correo
+  Future<String?> getCorreo() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(_correoKey);
   }
 
   // ── Helpers privados ──────────────────────────────────────────
