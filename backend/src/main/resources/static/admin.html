@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - HotelApp</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+<div id="section-login" class="flex min-h-screen items-center justify-center px-4">
+    <div class="w-full max-w-md space-y-8 bg-white p-8 rounded-xl shadow-lg">
+        <h2 class="text-center text-3xl font-extrabold text-gray-900">HotelApp Admin</h2>
+        <p class="text-center text-sm text-gray-600">Inicia sesión para gestionar el hotel</p>
+
+        <form id="form-login" class="mt-8 space-y-6">
+            <div class="space-y-2">
+                <label class="text-sm font-medium text-gray-700">Correo Electrónico</label>
+                <input id="login-correo" type="email" required class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div class="space-y-2">
+                <label class="text-sm font-medium text-gray-700">Contraseña</label>
+                <input id="login-password" type="password" required class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
+                Ingresar al Panel
+            </button>
+        </form>
+    </div>
+</div>
+
+<div id="section-dashboard" class="hidden min-h-screen flex flex-col">
+    <header class="bg-white shadow-sm px-6 py-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold text-gray-800">Panel de Control (ADMIN)</h1>
+        <button id="btn-logout" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium">
+            Cerrar Sesión
+        </button>
+    </header>
+
+    <main class="flex-1 p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-xl shadow-md h-fit">
+            <h3 class="text-lg font-bold text-gray-700 mb-4">Subir Nueva Habitación</h3>
+            <form id="form-habitacion" class="space-y-4" enctype="multipart/form-data">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Número de Habitación</label>
+                    <input id="hab-numero" type="text" required class="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Tipo</label>
+                    <input id="hab-tipo" type="text" placeholder="Ej: Suite, Deluxe" required class="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Precio por Noche ($)</label>
+                    <input id="hab-precio" type="number" step="0.01" required class="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Descripción</label>
+                    <textarea id="hab-descripcion" rows="3" class="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md"></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Foto de la Habitación</label>
+                    <input id="hab-archivo" type="file" accept="image/*" required class="w-full mt-1 text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                </div>
+                <button type="submit" class="w-full py-2 bg-green-600 hover:bg-green-700 text-white rounded-md font-medium shadow-sm">
+                    Publicar Habitación
+                </button>
+            </form>
+        </div>
+
+        <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-md">
+            <h3 class="text-lg font-bold text-gray-700 mb-4">Habitaciones en Base de Datos</h3>
+            <div id="lista-habitaciones" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="/js/admin.js"></script>
+</body>
+</html>

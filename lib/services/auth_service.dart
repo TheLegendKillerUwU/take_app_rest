@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   // ⚠️ Cambia esta IP por la de tu computadora en la red local
-  static const String _baseUrl = 'http://10.55.196.74:8080';
+  static const String _baseUrl = 'http://192.168.8.2:8080';
 
   static const String _tokenKey = 'auth_token';
   static const String _nombreKey = 'user_nombre';
