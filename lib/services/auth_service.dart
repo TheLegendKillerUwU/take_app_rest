@@ -1,14 +1,15 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'api_config.dart';
 
 class AuthService {
-  // ⚠️ Cambia esta IP por la de tu computadora en la red local
-  static const String _baseUrl = 'https://api.agrotechnology.org';
+  static const String _baseUrl = ApiConfig.baseUrl;
 
   static const String _tokenKey = 'auth_token';
   static const String _nombreKey = 'user_nombre';
   static const String _correoKey = 'user_correo';
+  static const String _rolKey = 'user_rol';
 
   // ── Registro ─────────────────────────────────────────────────
 
@@ -84,6 +85,7 @@ class AuthService {
     await prefs.remove(_tokenKey);
     await prefs.remove(_nombreKey);
     await prefs.remove(_correoKey);
+    await prefs.remove(_rolKey);
   }
 
   // ── Getters de sesión ─────────────────────────────────────────
@@ -109,6 +111,11 @@ class AuthService {
     return prefs.getString(_correoKey);
   }
 
+  Future<String?> getRol() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(_rolKey);
+  }
+
   // ── Helpers privados ──────────────────────────────────────────
 
   Future<void> _saveSession(Map<String, dynamic> body) async {
@@ -116,6 +123,7 @@ class AuthService {
     await prefs.setString(_tokenKey, body['token'] ?? '');
     await prefs.setString(_nombreKey, body['nombre'] ?? '');
     await prefs.setString(_correoKey, body['correo'] ?? '');
+    await prefs.setString(_rolKey, body['rol'] ?? 'USER');
   }
 }
 
